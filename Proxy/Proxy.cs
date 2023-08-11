@@ -32,11 +32,12 @@ namespace AQWInterceptor.Proxy
             Listener = new TcpListener(IPAddress.Loopback, Port);
             IsRunning = false;
             ShouldExit = false;
-            MyThread = new Thread(StartListening) { Name = "Proxy Thread" };
         }
 
         public void StartProxy(string ip, int port = 5588)
         {
+            MyThread = new Thread(StartListening) { Name = "Proxy Thread" };
+            ShouldExit = false;
             IsRunning = true;
             IP = ip;
             Port = port;
@@ -47,11 +48,8 @@ namespace AQWInterceptor.Proxy
         {
             ShouldExit = true;
             Listener.Stop();
-            if (Client != null)
-                Client.Client.Shutdown(SocketShutdown.Both);
-
-            if (Server != null)
-                Server.Client.Shutdown(SocketShutdown.Both);
+            Client?.Client.Shutdown(SocketShutdown.Both);
+            Server?.Client.Shutdown(SocketShutdown.Both);
             
             if (MyThread.IsAlive)
                 MyThread.Abort();
@@ -59,18 +57,28 @@ namespace AQWInterceptor.Proxy
 
         private void StartListening()
         {
+            Debug.WriteLine("Listening now... Server: " + IP + ":" + Port);
             Listener.Start();
             while(!ShouldExit)
             {
-                Client = Listener.AcceptTcpClient();
-                Debug.WriteLine("Client opened");
-                Server = new TcpClient();
-                Server.Connect(IP, Port);
-                Debug.WriteLine("Server opened");
+                try
+                {
+                    Client = Listener.AcceptTcpClient();
+                    Debug.WriteLine("Client opened");
+                    Server = new TcpClient();
+                    Server.Connect(IP, Port);
+                    Debug.WriteLine("Server opened");
 
-                Task.Factory.StartNew(() => Intercept(Client, Server, SenderType.Client));
-                Task.Factory.StartNew(() => Intercept(Server, Client, SenderType.Server));
+                    Task.Factory.StartNew(() => Intercept(Client, Server, SenderType.Client));
+                    Task.Factory.StartNew(() => Intercept(Server, Client, SenderType.Server));
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine("Exception Encountered!!!!!");
+                }
             }
+
+            Debug.WriteLine("Thread ended::: 0");
         }
 
         private async Task Intercept(TcpClient sender, TcpClient receiver, SenderType type)

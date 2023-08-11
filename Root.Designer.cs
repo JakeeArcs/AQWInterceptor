@@ -40,6 +40,7 @@
             this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startWithAddressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -91,6 +92,7 @@
             // 
             this.gameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startConnectionToolStripMenuItem,
+            this.startWithAddressToolStripMenuItem,
             this.stopConnectionToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
             this.gameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -99,14 +101,14 @@
             // startConnectionToolStripMenuItem
             // 
             this.startConnectionToolStripMenuItem.Name = "startConnectionToolStripMenuItem";
-            this.startConnectionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.startConnectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.startConnectionToolStripMenuItem.Text = "Start Connection";
             this.startConnectionToolStripMenuItem.Click += new System.EventHandler(this.startConnectionToolStripMenuItem_Click);
             // 
             // stopConnectionToolStripMenuItem
             // 
             this.stopConnectionToolStripMenuItem.Name = "stopConnectionToolStripMenuItem";
-            this.stopConnectionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.stopConnectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stopConnectionToolStripMenuItem.Text = "Stop Connection";
             this.stopConnectionToolStripMenuItem.Click += new System.EventHandler(this.stopConnectionToolStripMenuItem_Click);
             // 
@@ -123,7 +125,7 @@
             // clearLogToolStripMenuItem
             // 
             this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
-            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.clearLogToolStripMenuItem.Text = "Clear Log";
             this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
             // 
@@ -132,7 +134,7 @@
             this.showClientToolStripMenuItem.Checked = true;
             this.showClientToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showClientToolStripMenuItem.Name = "showClientToolStripMenuItem";
-            this.showClientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showClientToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.showClientToolStripMenuItem.Text = "Show Client";
             this.showClientToolStripMenuItem.Click += new System.EventHandler(this.showClientToolStripMenuItem_Click);
             // 
@@ -141,9 +143,16 @@
             this.showServerToolStripMenuItem.Checked = true;
             this.showServerToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showServerToolStripMenuItem.Name = "showServerToolStripMenuItem";
-            this.showServerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showServerToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.showServerToolStripMenuItem.Text = "Show Server";
             this.showServerToolStripMenuItem.Click += new System.EventHandler(this.showServerToolStripMenuItem_Click);
+            // 
+            // startWithAddressToolStripMenuItem
+            // 
+            this.startWithAddressToolStripMenuItem.Name = "startWithAddressToolStripMenuItem";
+            this.startWithAddressToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startWithAddressToolStripMenuItem.Text = "Start With Address...";
+            this.startWithAddressToolStripMenuItem.Click += new System.EventHandler(this.startWithAddressToolStripMenuItem_Click);
             // 
             // Root
             // 
@@ -183,6 +192,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showClientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showServerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startWithAddressToolStripMenuItem;
     }
 }
 

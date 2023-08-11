@@ -30,10 +30,35 @@ namespace AQWInterceptor
 
         private void startConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StartConnection("twig.aqw.aq.com");
+        }
+
+        private void startWithAddressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            proxyServer.StopProxy();
+            string[] address = GameAddress.Instance.ShowAddressForm().Split(':');
+            if (address.Length > 2)
+                return;
+            else if (address.Length == 1)
+            {
+                StartConnection(address[0]);
+                return;
+            }
+
+            int portNum = 0;
+            int.TryParse(address[1], out portNum);
+            if (portNum == 0)
+                return;
+
+            StartConnection(address[0], portNum);
+        }
+
+        private void StartConnection(string address, int port = 5588)
+        {
             startConnectionToolStripMenuItem.Enabled = false;
             stopConnectionToolStripMenuItem.Enabled = true;
-            proxyServer.StartProxy("twig.aqw.aq.com");
-            toolStripStatusLabel1.Text = "Listening...";
+            proxyServer.StartProxy(address);
+            toolStripStatusLabel1.Text = "Listening... | " + address + ":" + port;
         }
 
         private void OnPacketIntercepted(string message, SenderType type)
